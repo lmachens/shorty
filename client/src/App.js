@@ -1,6 +1,7 @@
 import React from "react";
 import Shorties from "./pages/Shorties";
 import styled from "styled-components/macro";
+import GlobalStyle from "./GlobalStyle";
 import logoSrc from "./assets/logo.svg";
 
 const Container = styled.div`
@@ -18,15 +19,18 @@ const Container = styled.div`
 `;
 
 const App = () => (
-  <Container>
-    <header>
-      <img src={logoSrc} alt="shorty Logo with pants" />
-      <h1>shorty</h1>
-    </header>
-    <main>
-      <Shorties />
-    </main>
-  </Container>
+  <>
+    <GlobalStyle />
+    <Container>
+      <header>
+        <img src={logoSrc} alt="shorty Logo with pants" />
+        <h1>shorty</h1>
+      </header>
+      <main>
+        <Shorties />
+      </main>
+    </Container>
+  </>
 );
 
 export default App;

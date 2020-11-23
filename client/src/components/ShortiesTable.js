@@ -7,11 +7,21 @@ const Table = styled.table`
   table-layout: fixed;
   overflow-wrap: break-word;
   text-align: left;
+  background-color: #ffffff;
+  padding: 1em;
+  border-radius: 10px;
+  border-spacing: 0;
 
+  tbody tr:hover {
+    background-color: #ddd;
+  }
+
+  th,
   td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: 0.5em;
   }
 `;
 

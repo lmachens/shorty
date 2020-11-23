@@ -1,27 +1,31 @@
-export const postNewShorty = async (newShorty) => {
-  const response = await fetch("/api/shorties", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newShorty),
-  });
-  const result = await response.json();
+const fetchApi = async (url, options) => {
+  const response = await fetch(url, options);
+
+  const isJSON = response.headers
+    .get("Content-Type")
+    .includes("application/json");
+  const result = await (isJSON ? response.json() : response.text());
+
   if (!response.ok) {
     throw new Error(result);
   }
   return result;
 };
 
-export const getShorties = async () => {
-  const response = await fetch("/api/shorties", {
+export const postNewShorty = (newShorty) => {
+  return fetchApi("/api/shorties", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newShorty),
+  });
+};
+
+export const getShorties = () => {
+  return fetchApi("/api/shorties", {
     headers: {
       "Content-Type": "application/json",
     },
   });
-  const result = await response.json();
-  if (!response.ok) {
-    throw new Error(result);
-  }
-  return result;
 };

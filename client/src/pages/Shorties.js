@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { getShorties } from "../api/shorties";
+import ErrorMessage from "../components/ErrorMessage";
 import InsertShorty from "../components/InsertShorty";
 import ShortiesTable from "../components/ShortiesTable";
 
@@ -28,7 +29,7 @@ const Shorties = () => {
     <>
       <InsertShorty onSuccess={refreshShorties} />
       {loading && <div>Loading...</div>}
-      {error && <div>💀 {error.message}</div>}
+      {error && <ErrorMessage message={error.message} />}
       <ShortiesTable shorties={shorties} />
     </>
   );

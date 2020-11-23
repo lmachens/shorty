@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { postNewShorty } from "../api/shorties";
+import styled from "styled-components/macro";
+
+const Form = styled.form`
+  padding: 1em;
+
+  *:not(:last-child) {
+    margin-right: 1em;
+  }
+
+  label > input {
+    margin-left: 0.5em;
+  }
+`;
 
 const newShorty = {
   id: "",
@@ -32,7 +45,7 @@ const InsertShorty = ({ onSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <label>
         ID
         <input
@@ -55,7 +68,7 @@ const InsertShorty = ({ onSuccess }) => {
         disabled={loading}
       />
       {error && <div>💀 {error.message}</div>}
-    </form>
+    </Form>
   );
 };
 

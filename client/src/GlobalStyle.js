@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: 16px;
+    font-size: 100%;
     background-color: #eef5f9;
     color: #3b3e51;
     font-family: 'Agave', sans-serif;

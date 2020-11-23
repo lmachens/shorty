@@ -1,16 +1,26 @@
 import React from "react";
 import Shorties from "./pages/Shorties";
 import styled from "styled-components/macro";
+import logoSrc from "./assets/logo.svg";
 
 const Container = styled.div`
   max-width: 1000px;
   width: 80%;
   margin: 0 auto;
+
+  header {
+    display: flex;
+
+    img {
+      margin-right: 0.5em;
+    }
+  }
 `;
 
 const App = () => (
   <Container>
     <header>
+      <img src={logoSrc} alt="shorty Logo with pants" />
       <h1>shorty</h1>
     </header>
     <main>

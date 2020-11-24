@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "postinstall": "cd client && npm install",
-    "build": "cd client && npm run build && npm run build-storybook",
+    "build:server": "tsc",
+    "build": "npm run build:server && cd client && npm run build && npm run build-storybook",
     "test:watch": "cd client && npm run test:watch",
     "test": "npm run lint && npm run prettier && cd client && npm test",
     "lint": "eslint . --ext .js",
@@ -16,7 +17,7 @@
     "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,html,css,json}\"",
     "server": "nodemon server.js",
     "storybook": "cd client && npm run storybook",
-    "start": "node server.js"
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",

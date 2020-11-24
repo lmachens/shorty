@@ -21,12 +21,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build/* ../dist/client",
     "test:watch": "react-scripts test",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public -o ../dist/client/storybook-static"
   },
   "browserslist": {
     "production": [

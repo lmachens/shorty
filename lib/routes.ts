@@ -1,12 +1,12 @@
-const express = require("express");
-const path = require("path");
-const { DUPLICATE_KEY } = require("./database");
-const {
+import express from "express";
+import path from "path";
+import { DUPLICATE_KEY } from "./database";
+import {
   insertShorty,
   findShorty,
   updateShorty,
   findShorties,
-} = require("./shorties");
+} from "./shorties";
 
 const router = express.Router();
 
@@ -57,4 +57,4 @@ router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
-module.exports = router;
+export default router;

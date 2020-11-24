@@ -1,9 +1,11 @@
-require("dotenv").config();
-const express = require("express");
-const { connect } = require("./lib/database");
-const { errorHandler } = require("./lib/middlewares");
-const routes = require("./lib/routes");
-const { ensureUniqueIdIndex } = require("./lib/shorties");
+import dotenv from "dotenv";
+import express from "express";
+import { connect } from "./lib/database";
+import { errorHandler } from "./lib/middlewares";
+import routes from "./lib/routes";
+import { ensureUniqueIdIndex } from "./lib/shorties";
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3001;

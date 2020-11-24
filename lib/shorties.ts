@@ -1,17 +1,32 @@
+import { FilterQuery, UpdateQuery } from "mongodb";
 import { collection } from "./database";
 
-export const getShortiesCollection = () => collection("shorties");
+interface Shorty {
+  createdAt: Date;
+  views: number;
+  id: string;
+  target: string;
+}
+
+export const getShortiesCollection = () => collection<Shorty>("shorties");
 
 export const ensureUniqueIdIndex = () =>
-  getShortiesCollection().createIndexes({ id: 1 }, { unique: true });
-export const findShorties = (query = {}) =>
+  getShortiesCollection().createIndexes([{ key: { id: 1 }, unique: true }]);
+export const findShorties = (query: FilterQuery<Shorty> = {}) =>
   getShortiesCollection().find(query).toArray();
-export const findShorty = (query) => getShortiesCollection().findOne(query);
-export const insertShorty = (shorty) =>
+export const findShorty = (query: FilterQuery<Shorty>) =>
+  getShortiesCollection().findOne(query);
+export const insertShorty = ({
+  id,
+  target,
+}: Omit<Shorty, "createdAt" | "views">) =>
   getShortiesCollection().insertOne({
     createdAt: new Date(),
     views: 0,
-    ...shorty,
+    id,
+    target,
   });
-export const updateShorty = (query, update) =>
-  getShortiesCollection().updateOne(query, update);
+export const updateShorty = (
+  query: FilterQuery<Shorty>,
+  update: UpdateQuery<Shorty>
+) => getShortiesCollection().updateOne(query, update);

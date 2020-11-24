@@ -30,7 +30,7 @@ router.post("/api/shorties", async (req, res, next) => {
 });
 
 // Serve any static files
-router.use(express.static(path.join(__dirname, "../client/build")));
+router.use(express.static(path.join(__dirname, "../client")));
 router.use(
   "/storybook",
   express.static(path.join(__dirname, "../client/storybook-static"))
@@ -54,7 +54,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  res.sendFile(path.join(__dirname, "../client/index.html"));
 });
 
 export default router;

@@ -15,8 +15,14 @@ app.use(routes);
 app.use(errorHandler);
 
 async function run() {
+  const { MONGO_DB_URI, MONGO_DB_NAME } = process.env;
+  if (!MONGO_DB_URI || !MONGO_DB_NAME) {
+    throw new Error(
+      `Environment variables MONGO_DB_NAME and MONGO_DB_NAME are required`
+    );
+  }
   console.log("Connecting to database...");
-  await connect(process.env.MONGO_DB_URI, process.env.MONGO_DB_NAME);
+  await connect(MONGO_DB_URI, MONGO_DB_NAME);
   console.log("Connected to database 🎉");
   await ensureUniqueIdIndex();
 

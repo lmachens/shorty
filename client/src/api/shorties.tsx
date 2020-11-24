@@ -8,7 +8,7 @@ const fetchApi = async <T,>(
 
   const isJSON = response.headers
     .get("Content-Type")
-    .includes("application/json");
+    ?.includes("application/json");
   const result = await (isJSON ? response.json() : response.text());
 
   if (!response.ok) {

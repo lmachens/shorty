@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && mkdir -p ../dist/client && mv build/* ../dist/client",
+    "build": "react-scripts build && rm -rf ../dist/client && mkdir -p ../dist/client && mv build/* ../dist/client",
     "test:watch": "react-scripts test",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",

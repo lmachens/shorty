@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { Shorty } from "../../../types/shorties";
 import { getShorties } from "../api/shorties";
 import ErrorMessage from "../components/ErrorMessage";
 import InsertShorty from "../components/InsertShorty";
 import ShortiesTable from "../components/ShortiesTable";
 
 const Shorties = () => {
-  const [shorties, setShorties] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [shorties, setShorties] = useState<Shorty[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error>(null);
 
   const refreshShorties = useCallback(async () => {
     try {
@@ -23,7 +24,9 @@ const Shorties = () => {
     }
   }, []);
 
-  useEffect(refreshShorties, [refreshShorties]);
+  useEffect(() => {
+    refreshShorties();
+  }, [refreshShorties]);
 
   return (
     <>

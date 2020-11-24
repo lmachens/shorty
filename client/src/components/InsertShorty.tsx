@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { postNewShorty } from "../api/shorties";
 import styled from "styled-components/macro";
 import ErrorMessage from "./ErrorMessage";
+import { NewShorty } from "../../../types/shorties";
 
 const Form = styled.form`
   padding: 1em;
@@ -16,16 +17,16 @@ const Form = styled.form`
   }
 `;
 
-const newShorty = {
+const newShorty: NewShorty = {
   id: "",
   target: "",
 };
 const InsertShorty = ({ onSuccess }) => {
-  const [shorty, setShorty] = useState(newShorty);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [shorty, setShorty] = useState<NewShorty>(newShorty);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error>(null);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       setError(null);
@@ -41,7 +42,9 @@ const InsertShorty = ({ onSuccess }) => {
     }
   };
 
-  const handleChange = (key) => (event) => {
+  const handleChange = (key: string) => (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setShorty({ ...shorty, [key]: event.target.value });
   };
 

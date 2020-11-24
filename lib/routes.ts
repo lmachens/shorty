@@ -1,12 +1,14 @@
-const express = require("express");
-const path = require("path");
-const { DUPLICATE_KEY } = require("./database");
-const {
+import express from "express";
+import fs from "fs";
+import path from "path";
+import { NewShorty } from "../types/shorties";
+import { DUPLICATE_KEY } from "./database";
+import {
   insertShorty,
   findShorty,
   updateShorty,
   findShorties,
-} = require("./shorties");
+} from "./shorties";
 
 const router = express.Router();
 
@@ -21,7 +23,7 @@ router.get("/api/shorties", async (req, res, next) => {
 
 router.post("/api/shorties", async (req, res, next) => {
   try {
-    const shorty = req.body;
+    const shorty: NewShorty = req.body;
     await insertShorty(shorty);
     res.status(201).json(`Shorty ${shorty.id} inserted`);
   } catch (error) {
@@ -30,7 +32,7 @@ router.post("/api/shorties", async (req, res, next) => {
 });
 
 // Serve any static files
-router.use(express.static(path.join(__dirname, "../client/build")));
+router.use(express.static(path.join(__dirname, "../client")));
 router.use(
   "/storybook",
   express.static(path.join(__dirname, "../client/storybook-static"))
@@ -54,7 +56,13 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  try {
+    const indexFile = path.join(__dirname, "../client/index.html");
+    fs.accessSync(indexFile);
+    res.sendFile(indexFile);
+  } catch (error) {
+    res.status(404).send("Static files are not available in Development");
+  }
 });
 
-module.exports = router;
+export default router;

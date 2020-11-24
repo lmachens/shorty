@@ -8,6 +8,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules", ".vscode", "client"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", ".vscode", "client", "dist"]
 }

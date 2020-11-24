@@ -23,7 +23,9 @@ const Shorties = () => {
     }
   }, []);
 
-  useEffect(refreshShorties, [refreshShorties]);
+  useEffect(() => {
+    refreshShorties();
+  }, [refreshShorties]);
 
   return (
     <>

@@ -1,4 +1,9 @@
-const fetchApi = async (url, options) => {
+import { Shorty, NewShorty } from "../../../types/shorties";
+
+const fetchApi = async <T,>(
+  url: RequestInfo,
+  options?: RequestInit
+): Promise<T> => {
   const response = await fetch(url, options);
 
   const isJSON = response.headers
@@ -12,7 +17,7 @@ const fetchApi = async (url, options) => {
   return result;
 };
 
-export const postNewShorty = (newShorty) => {
+export const postNewShorty = (newShorty: NewShorty) => {
   return fetchApi("/api/shorties", {
     method: "POST",
     headers: {
@@ -23,7 +28,7 @@ export const postNewShorty = (newShorty) => {
 };
 
 export const getShorties = () => {
-  return fetchApi("/api/shorties", {
+  return fetchApi<Shorty[]>("/api/shorties", {
     headers: {
       "Content-Type": "application/json",
     },

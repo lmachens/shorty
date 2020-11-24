@@ -1,6 +1,7 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
+import { NewShorty } from "../types/shorties";
 import { DUPLICATE_KEY } from "./database";
 import {
   insertShorty,
@@ -22,7 +23,7 @@ router.get("/api/shorties", async (req, res, next) => {
 
 router.post("/api/shorties", async (req, res, next) => {
   try {
-    const shorty = req.body;
+    const shorty: NewShorty = req.body;
     await insertShorty(shorty);
     res.status(201).json(`Shorty ${shorty.id} inserted`);
   } catch (error) {

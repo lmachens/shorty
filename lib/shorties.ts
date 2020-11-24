@@ -1,12 +1,6 @@
 import { FilterQuery, UpdateQuery } from "mongodb";
+import { Shorty, NewShorty } from "../types/shorties";
 import { collection } from "./database";
-
-interface Shorty {
-  createdAt: Date;
-  views: number;
-  id: string;
-  target: string;
-}
 
 export const getShortiesCollection = () => collection<Shorty>("shorties");
 
@@ -16,15 +10,11 @@ export const findShorties = (query: FilterQuery<Shorty> = {}) =>
   getShortiesCollection().find(query).toArray();
 export const findShorty = (query: FilterQuery<Shorty>) =>
   getShortiesCollection().findOne(query);
-export const insertShorty = ({
-  id,
-  target,
-}: Omit<Shorty, "createdAt" | "views">) =>
+export const insertShorty = (newShorty: NewShorty) =>
   getShortiesCollection().insertOne({
     createdAt: new Date(),
     views: 0,
-    id,
-    target,
+    ...newShorty,
   });
 export const updateShorty = (
   query: FilterQuery<Shorty>,

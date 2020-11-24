@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components/macro";
+import { Shorty } from "../../../types/shorties";
 
 const Table = styled.table`
   width: 100%;
@@ -25,13 +25,17 @@ const Table = styled.table`
   }
 `;
 
-const createURL = (id) => {
+const createURL = (id: string) => {
   if (window.location.origin.match(/localhost/)) {
     return `http://localhost:3001/${id}`;
   }
   return `${window.location.origin}/${id}`;
 };
-const ShortiesTable = ({ shorties }) => {
+
+type Props = {
+  shorties: Shorty[];
+};
+const ShortiesTable = ({ shorties }: Props) => {
   return (
     <Table>
       <thead>
@@ -62,10 +66,6 @@ const ShortiesTable = ({ shorties }) => {
       </tbody>
     </Table>
   );
-};
-
-ShortiesTable.propTypes = {
-  shorties: PropTypes.array,
 };
 
 export default ShortiesTable;

@@ -1,4 +1,5 @@
 import express from "express";
+import fs from "fs";
 import path from "path";
 import { DUPLICATE_KEY } from "./database";
 import {
@@ -54,7 +55,13 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/index.html"));
+  try {
+    const indexFile = path.join(__dirname, "../client/index.html");
+    fs.accessSync(indexFile);
+    res.sendFile(indexFile);
+  } catch (error) {
+    res.status(404).send("Static files are not available in Development");
+  }
 });
 
 export default router;

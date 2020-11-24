@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { postNewShorty } from "../api/shorties";
 import styled from "styled-components/macro";
+import ErrorMessage from "./ErrorMessage";
 
 const Form = styled.form`
   padding: 1em;
@@ -67,7 +68,7 @@ const InsertShorty = ({ onSuccess }) => {
         value={loading ? "Loading..." : "Insert"}
         disabled={loading}
       />
-      {error && <div>💀 {error.message}</div>}
+      {error && <ErrorMessage message={error.message} />}
     </Form>
   );
 };

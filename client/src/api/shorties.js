@@ -3,7 +3,7 @@ const fetchApi = async (url, options) => {
 
   const isJSON = response.headers
     .get("Content-Type")
-    .includes("application/json");
+    ?.includes("application/json");
   const result = await (isJSON ? response.json() : response.text());
 
   if (!response.ok) {

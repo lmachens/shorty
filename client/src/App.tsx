@@ -18,19 +18,21 @@ const Container = styled.div`
   }
 `;
 
-const App = () => (
-  <>
-    <GlobalStyle />
-    <Container>
-      <header>
-        <img src={logoSrc} alt="shorty Logo with pants" />
-        <h1>shorty</h1>
-      </header>
-      <main>
-        <Shorties />
-      </main>
-    </Container>
-  </>
-);
+const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      <Container>
+        <header>
+          <img src={logoSrc} alt="shorty Logo with pants" />
+          <h1>shorty</h1>
+        </header>
+        <main>
+          <Shorties />
+        </main>
+      </Container>
+    </>
+  );
+};
 
 export default App;

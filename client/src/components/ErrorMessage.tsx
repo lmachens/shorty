@@ -8,8 +8,8 @@ const Container = styled.div`
 type Props = {
   message: string;
 };
-const ErrorMessage = ({ message }: Props) => (
-  <Container>💀 {message}</Container>
-);
+const ErrorMessage = ({ message }: Props) => {
+  return <Container>💀 {message}</Container>;
+};
 
 export default ErrorMessage;

@@ -43,10 +43,10 @@ const ShortiesTable = ({ shorties }: Props) => {
     <Table>
       <thead>
         <tr>
-          <th>ID</th>
+          <th>{dict.id}</th>
           <th>{dict.target}</th>
           <th>{dict.views}</th>
-          <th>Created At</th>
+          <th>{dict.createdAt}</th>
         </tr>
       </thead>
       <tbody>

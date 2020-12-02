@@ -4,12 +4,16 @@ export const I18nContext = React.createContext(null);
 
 export const localeDicts = {
   de: {
+    id: "ID",
     target: "Ziel",
     views: "Ansichten",
+    createdAt: "Erstell am",
   },
   en: {
+    id: "ID",
     target: "Target",
     views: "Views",
+    createdAt: "Created At",
   },
 };
 

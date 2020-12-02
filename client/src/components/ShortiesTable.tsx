@@ -37,7 +37,7 @@ type Props = {
   shorties: Shorty[];
 };
 const ShortiesTable = ({ shorties }: Props) => {
-  const dict = useContext(I18nContext);
+  const { dict } = useContext(I18nContext);
 
   return (
     <Table>

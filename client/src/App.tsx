@@ -20,9 +20,14 @@ const Container = styled.div`
   }
 `;
 
+const getLocale = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("lang");
+};
+
 const App = () => {
   return (
-    <I18nProvider>
+    <I18nProvider lang={getLocale()}>
       <GlobalStyle />
       <Container>
         <header>

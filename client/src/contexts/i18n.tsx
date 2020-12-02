@@ -1,22 +1,23 @@
-import React, { ReactNode, useContext, useState } from "react";
-import deDict from "./de.json";
-import enDict from "./en.json";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
+// import deDict from "./de.json";
+// import enDict from "./en.json";
 
 export const I18nContext = React.createContext(null);
 
-export const localeDicts = {
-  de: deDict,
-  en: enDict,
-};
-
 interface Props {
   children: ReactNode;
+  lang?: string;
 }
-export const I18nProvider = ({ children }: Props) => {
-  const [dict, setDict] = useState(localeDicts.de);
+export const I18nProvider = ({ children, lang = "en" }: Props) => {
+  const [dict, setDict] = useState({});
 
-  const changeDict = (locale) => {
-    setDict(localeDicts[locale]);
+  useEffect(() => {
+    changeDict(lang);
+  }, [lang]);
+
+  const changeDict = async (locale) => {
+    const dict = await import(`./${locale}.json`);
+    setDict(dict);
   };
 
   return (

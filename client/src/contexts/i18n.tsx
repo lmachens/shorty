@@ -32,3 +32,4 @@ export const I18nProvider = ({ children }: Props) => {
 
 export const useI18n = () => useContext(I18nContext);
 export const useDict = () => useI18n().dict;
+export const useChangeDict = () => useI18n().changeDict;

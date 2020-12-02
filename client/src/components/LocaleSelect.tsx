@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { I18nContext } from "../contexts/i18n";
+import React from "react";
+import { useChangeDict } from "../contexts/i18n";
 
 const LocaleSelect = () => {
-  const { changeDict } = useContext(I18nContext);
+  const changeDict = useChangeDict();
 
   return (
     <select onChange={(event) => changeDict(event.target.value)}>

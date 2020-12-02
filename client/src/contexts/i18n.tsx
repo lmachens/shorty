@@ -19,8 +19,12 @@ interface Props {
 export const I18nProvider = ({ children }: Props) => {
   const [dict, setDict] = useState(localeDicts.de);
 
+  const changeDict = (locale) => {
+    setDict(localeDicts[locale]);
+  };
+
   return (
-    <I18nContext.Provider value={{ dict, setDict }}>
+    <I18nContext.Provider value={{ dict, changeDict }}>
       {children}
     </I18nContext.Provider>
   );

@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useContext, useState } from "react";
 
 export const I18nContext = React.createContext(null);
 
@@ -24,4 +24,8 @@ export const I18nProvider = ({ children }: Props) => {
       {children}
     </I18nContext.Provider>
   );
+};
+
+export const useI18n = () => {
+  return useContext(I18nContext);
 };

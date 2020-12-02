@@ -1,20 +1,12 @@
 import React, { ReactNode, useContext, useState } from "react";
+import deDict from "./de.json";
+import enDict from "./en.json";
 
 export const I18nContext = React.createContext(null);
 
 export const localeDicts = {
-  de: {
-    id: "ID",
-    target: "Ziel",
-    views: "Ansichten",
-    createdAt: "Erstell am",
-  },
-  en: {
-    id: "ID",
-    target: "Target",
-    views: "Views",
-    createdAt: "Created At",
-  },
+  de: deDict,
+  en: enDict,
 };
 
 interface Props {

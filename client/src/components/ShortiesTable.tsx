@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/macro";
 import { Shorty } from "../../../types/shorties";
+import { I18nContext } from "../contexts/i18n";
 
 const Table = styled.table`
   width: 100%;
@@ -36,13 +37,15 @@ type Props = {
   shorties: Shorty[];
 };
 const ShortiesTable = ({ shorties }: Props) => {
+  const dict = useContext(I18nContext);
+
   return (
     <Table>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Target</th>
-          <th>Views</th>
+          <th>{dict.target}</th>
+          <th>{dict.views}</th>
           <th>Created At</th>
         </tr>
       </thead>

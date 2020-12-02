@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode, useState } from "react";
 
 export const I18nContext = React.createContext(null);
 
@@ -11,4 +11,17 @@ export const localeDicts = {
     target: "Target",
     views: "Views",
   },
+};
+
+interface Props {
+  children: ReactNode;
+}
+export const I18nProvider = ({ children }: Props) => {
+  const [dict, setDict] = useState(localeDicts.de);
+
+  return (
+    <I18nContext.Provider value={{ dict, setDict }}>
+      {children}
+    </I18nContext.Provider>
+  );
 };

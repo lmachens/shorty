@@ -3,6 +3,8 @@ import Shorties from "./pages/Shorties";
 import styled from "styled-components/macro";
 import GlobalStyle from "./GlobalStyle";
 import logoSrc from "./assets/logo.svg";
+import { I18nProvider } from "./contexts/i18n";
+import LocaleSelect from "./components/LocaleSelect";
 
 const Container = styled.div`
   max-width: 1000px;
@@ -18,20 +20,26 @@ const Container = styled.div`
   }
 `;
 
+const getLocale = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("lang");
+};
+
 const App = () => {
   return (
-    <>
+    <I18nProvider lang={getLocale()}>
       <GlobalStyle />
       <Container>
         <header>
           <img src={logoSrc} alt="shorty Logo with pants" />
           <h1>shorty</h1>
+          <LocaleSelect />
         </header>
         <main>
           <Shorties />
         </main>
       </Container>
-    </>
+    </I18nProvider>
   );
 };
 

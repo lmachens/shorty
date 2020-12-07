@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { Shorty } from "../../../types/shorties";
+import { useDict } from "../contexts/i18n";
 
 const Table = styled.table`
   width: 100%;
@@ -36,14 +37,16 @@ type Props = {
   shorties: Shorty[];
 };
 const ShortiesTable = ({ shorties }: Props) => {
+  const dict = useDict();
+
   return (
     <Table>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Target</th>
-          <th>Views</th>
-          <th>Created At</th>
+          <th>{dict.id}</th>
+          <th>{dict.target}</th>
+          <th>{dict.views}</th>
+          <th>{dict.createdAt}</th>
         </tr>
       </thead>
       <tbody>

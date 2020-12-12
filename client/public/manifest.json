@@ -1,6 +1,6 @@
 {
-  "short_name": "CRA-With-API",
-  "name": "CRA-With-API Sample",
+  "short_name": "shorty",
+  "name": "shorty URL shortener",
   "icons": [
     {
       "src": "favicon.ico",

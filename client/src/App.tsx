@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 import GlobalStyle from "./GlobalStyle";
 import { I18nProvider } from "./contexts/i18n";
 import AppHeader from "./components/AppHeader";
+import Subscription from "./components/Subscription";
 
 const Container = styled.div`
   max-width: 1000px;
@@ -23,6 +24,7 @@ const App = () => {
       <Container>
         <AppHeader />
         <main>
+          <Subscription />
           <Shorties />
         </main>
       </Container>

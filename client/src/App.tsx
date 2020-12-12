@@ -22,7 +22,7 @@ const Container = styled.div`
 
 const getLocale = () => {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("lang");
+  return urlParams.get("lang") || "en";
 };
 
 const App = () => {

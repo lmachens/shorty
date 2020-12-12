@@ -4,13 +4,10 @@ import { Subscription } from "../types/subscriptions";
 import { collection } from "./database";
 
 export const initializeWebPush = (
-  gcmApiKey,
   vapidSubject,
   vapidPublicKey,
   vapidPrivateKey
 ) => {
-  webPush.setGCMAPIKey(gcmApiKey);
-
   webPush.setVapidDetails(vapidSubject, vapidPublicKey, vapidPrivateKey);
 };
 

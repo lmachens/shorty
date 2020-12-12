@@ -19,7 +19,6 @@ async function run() {
   const {
     MONGO_DB_URI,
     MONGO_DB_NAME,
-    GOOGLE_CLOUD_MESSAGING_TOKEN,
     VAPID_SUBJECT,
     VAPID_PUBLIC_KEY,
     VAPID_PRIVATE_KEY,
@@ -27,7 +26,6 @@ async function run() {
   if (
     !MONGO_DB_URI ||
     !MONGO_DB_NAME ||
-    !GOOGLE_CLOUD_MESSAGING_TOKEN ||
     !VAPID_SUBJECT ||
     !VAPID_PUBLIC_KEY ||
     !VAPID_PRIVATE_KEY
@@ -40,12 +38,7 @@ async function run() {
   await connect(MONGO_DB_URI, MONGO_DB_NAME);
   console.log("Connected to database 🎉");
   await ensureUniqueIdIndex();
-  initializeWebPush(
-    GOOGLE_CLOUD_MESSAGING_TOKEN,
-    VAPID_SUBJECT,
-    VAPID_PUBLIC_KEY,
-    VAPID_PRIVATE_KEY
-  );
+  initializeWebPush(VAPID_SUBJECT, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
   console.log("WebPush initialized 🤖");
 
   app.listen(port, () => {

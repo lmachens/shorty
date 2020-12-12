@@ -1,7 +1,6 @@
 {
   "short_name": "shorty",
   "name": "shorty URL shortener",
-  "gcm_sender_id": "42409080826",
   "icons": [
     {
       "src": "favicon.ico",

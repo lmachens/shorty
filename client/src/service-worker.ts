@@ -15,6 +15,7 @@ import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
 import { BackgroundSyncPlugin } from "workbox-background-sync";
 import { NetworkOnly } from "workbox-strategies";
+import { BroadcastUpdatePlugin } from "workbox-broadcast-update";
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -81,6 +82,8 @@ self.addEventListener("message", (event) => {
 });
 
 // Any other custom service worker logic can go here.
+
+// https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
 const bgSyncPlugin = new BackgroundSyncPlugin("postQueue", {
   maxRetentionTime: 24 * 60, // Retry for max of 24 Hours (specified in minutes)
 });
@@ -91,4 +94,12 @@ registerRoute(
     plugins: [bgSyncPlugin],
   }),
   "POST"
+);
+
+// https://developers.google.com/web/tools/workbox/modules/workbox-broadcast-update
+registerRoute(
+  ({ url }) => url.pathname.startsWith("/api/"),
+  new StaleWhileRevalidate({
+    plugins: [new BroadcastUpdatePlugin({})],
+  })
 );

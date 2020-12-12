@@ -4,6 +4,7 @@ import { postNewShorty } from "../api/shorties";
 import styled from "styled-components/macro";
 import ErrorMessage from "./ErrorMessage";
 import { NewShorty } from "../../../types/shorties";
+import { useDict } from "../contexts/i18n";
 
 const Form = styled.form`
   padding: 1em;
@@ -25,6 +26,7 @@ const InsertShorty = ({ onSuccess }) => {
   const [shorty, setShorty] = useState<NewShorty>(newShorty);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error>(null);
+  const dict = useDict();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -51,24 +53,24 @@ const InsertShorty = ({ onSuccess }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <label>
-        ID
+        {dict.id}
         <input
           value={shorty.id}
           onChange={handleChange("id")}
-          placeholder="Name of the short link"
+          placeholder={dict.idPlaceholder}
         />
       </label>
       <label>
-        Target
+        {dict.target}
         <input
           value={shorty.target}
           onChange={handleChange("target")}
-          placeholder="Paste your link here"
+          placeholder={dict.targetPlaceholder}
         />
       </label>
       <input
         type="submit"
-        value={loading ? "Loading..." : "Insert"}
+        value={loading ? dict.loading : dict.insert}
         disabled={loading}
       />
       {error && <ErrorMessage message={error.message} />}

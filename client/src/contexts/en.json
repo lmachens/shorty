@@ -1,6 +1,11 @@
 {
+  "logoAlt": "shorty App Logo",
   "id": "ID",
   "target": "Target",
   "views": "Views",
-  "createdAt": "Created At"
+  "createdAt": "Created At",
+  "idPlaceholder": "Shortform of the link",
+  "targetPlaceholder": "Paste your link here",
+  "loading": "Loading...",
+  "insert": "Insert"
 }

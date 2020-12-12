@@ -10,6 +10,7 @@ interface Props {
 }
 export const I18nProvider = ({ children, lang = "en" }: Props) => {
   const [dict, setDict] = useState({});
+  const [locale, setLocale] = useState(lang);
 
   useEffect(() => {
     changeDict(lang);
@@ -18,10 +19,11 @@ export const I18nProvider = ({ children, lang = "en" }: Props) => {
   const changeDict = async (locale) => {
     const dict = await import(`./${locale}.json`);
     setDict(dict);
+    setLocale(locale);
   };
 
   return (
-    <I18nContext.Provider value={{ dict, changeDict }}>
+    <I18nContext.Provider value={{ dict, locale, changeDict }}>
       {children}
     </I18nContext.Provider>
   );
@@ -30,3 +32,4 @@ export const I18nProvider = ({ children, lang = "en" }: Props) => {
 export const useI18n = () => useContext(I18nContext);
 export const useDict = () => useI18n().dict;
 export const useChangeDict = () => useI18n().changeDict;
+export const useLocale = () => useI18n().locale;

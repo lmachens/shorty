@@ -1,18 +1,24 @@
 import React from "react";
+import styled from "styled-components";
+import { useDict } from "../contexts/i18n";
 import useSubscription from "../hooks/useSubscription";
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+`;
 
 const Subscription = () => {
   const [subscription, subscribeUser] = useSubscription();
+  const dict = useDict();
 
   return (
-    <div>
-      <p>
-        {subscription
-          ? `Subscription expires in ${subscription.expirationTime}`
-          : "Not subscribed"}
-      </p>
-      <button onClick={() => subscribeUser()}>Subscribe</button>
-    </div>
+    <Container>
+      <span>{subscription ? dict.subscribed : dict.notSubscribed}</span>
+      <button onClick={() => subscribeUser()}>{dict.subscribe}</button>
+    </Container>
   );
 };
 

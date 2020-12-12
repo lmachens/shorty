@@ -7,5 +7,8 @@
   "idPlaceholder": "Shortform of the link",
   "targetPlaceholder": "Paste your link here",
   "loading": "Loading...",
-  "insert": "Insert"
+  "insert": "Insert",
+  "subscribe": "Subscribe",
+  "subscribed": "Subscribed",
+  "notSubscribed": "Not subscribed"
 }

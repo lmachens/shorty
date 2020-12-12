@@ -23,7 +23,6 @@ router.get("/api/vapid", async (req, res) => {
 router.post("/api/subscriptions", async (req, res, next) => {
   try {
     const subscription: Subscription = req.body;
-    console.log(req.body);
     await insertSubscription(subscription);
     res.status(201).json(`Subscription ${subscription.endpointURL} added`);
   } catch (error) {

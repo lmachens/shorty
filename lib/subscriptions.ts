@@ -31,7 +31,9 @@ export const broadcastMessage = async (message) => {
       TTL: 60,
     };
 
-    webPush.sendNotification(pushSubscription, payload, options);
+    webPush
+      .sendNotification(pushSubscription, payload, options)
+      .catch((error) => console.error(error));
   });
 };
 

@@ -5,7 +5,7 @@ import GlobalStyle from "./GlobalStyle";
 import logoSrc from "./assets/logo.svg";
 import { I18nProvider } from "./contexts/i18n";
 import LocaleSelect from "./components/LocaleSelect";
-import useSubscription from "./hooks/useSubscription";
+import Subscription from "./components/Subscription";
 
 const Container = styled.div`
   max-width: 1000px;
@@ -27,8 +27,6 @@ const getLocale = () => {
 };
 
 const App = () => {
-  const [subscription, subscribeUser] = useSubscription();
-
   return (
     <I18nProvider lang={getLocale()}>
       <GlobalStyle />
@@ -36,10 +34,10 @@ const App = () => {
         <header>
           <img src={logoSrc} alt="shorty Logo with pants" />
           <h1>shorty</h1>
-          <button onClick={() => subscribeUser()}>Subscribe</button>
           <LocaleSelect />
         </header>
         <main>
+          <Subscription />
           <Shorties />
         </main>
       </Container>

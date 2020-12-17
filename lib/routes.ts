@@ -9,8 +9,26 @@ import {
   updateShorty,
   findShorties,
 } from "./shorties";
+import { broadcastMessage, insertSubscription } from "./subscriptions";
 
 const router = express.Router();
+
+router.get("/api/vapid", (req, res) => {
+  res.json({
+    publicKey: process.env.VAPID_PUBLIC_KEY,
+  });
+});
+
+router.post("/api/subscriptions", async (req, res, next) => {
+  try {
+    const subscription = req.body;
+    console.log("New subscription");
+    await insertSubscription(subscription);
+    res.status(201).json(`Subscription ${subscription.endpointURL} added`);
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.get("/api/shorties", async (req, res, next) => {
   try {
@@ -26,6 +44,7 @@ router.post("/api/shorties", async (req, res, next) => {
     const shorty: NewShorty = req.body;
     await insertShorty(shorty);
     res.status(201).json(`Shorty ${shorty.id} inserted`);
+    await broadcastMessage(`Shorty ${shorty.id} inserted`);
   } catch (error) {
     next(error);
   }

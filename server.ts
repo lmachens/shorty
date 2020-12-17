@@ -31,7 +31,7 @@ async function run() {
     !VAPID_PRIVATE_KEY
   ) {
     throw new Error(
-      `Environment variables MONGO_DB_NAME, MONGO_DB_NAME, GOOGLE_CLOUD_MESSAGING_TOKEN, VAPID_SUBJECT, VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY are required`
+      `Environment variables MONGO_DB_NAME, MONGO_DB_NAME, VAPID_SUBJECT, VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY are required`
     );
   }
   console.log("Connecting to database...");

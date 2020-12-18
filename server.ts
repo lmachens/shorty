@@ -4,6 +4,7 @@ import { connect } from "./lib/database";
 import { errorHandler } from "./lib/middlewares";
 import routes from "./lib/routes";
 import { ensureUniqueIdIndex } from "./lib/shorties";
+import { initializeWebPush } from "./lib/subscriptions";
 
 dotenv.config();
 
@@ -15,12 +16,27 @@ app.use(routes);
 app.use(errorHandler);
 
 async function run() {
-  const { MONGO_DB_URI, MONGO_DB_NAME } = process.env;
-  if (!MONGO_DB_URI || !MONGO_DB_NAME) {
+  const {
+    MONGO_DB_URI,
+    MONGO_DB_NAME,
+    VAPID_SUBJECT,
+    VAPID_PUBLIC_KEY,
+    VAPID_PRIVATE_KEY,
+  } = process.env;
+  if (
+    !MONGO_DB_URI ||
+    !MONGO_DB_NAME ||
+    !VAPID_SUBJECT ||
+    !VAPID_PUBLIC_KEY ||
+    !VAPID_PRIVATE_KEY
+  ) {
     throw new Error(
-      `Environment variables MONGO_DB_NAME and MONGO_DB_NAME are required`
+      `Environment variables MONGO_DB_NAME, MONGO_DB_NAME, VAPID_SUBJECT, VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY are required`
     );
   }
+  initializeWebPush(VAPID_SUBJECT, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
+  console.log("WebPush initialized 🤖");
+
   console.log("Connecting to database...");
   await connect(MONGO_DB_URI, MONGO_DB_NAME);
   console.log("Connected to database 🎉");

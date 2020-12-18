@@ -4,11 +4,13 @@ import { getShorties } from "../api/shorties";
 import ErrorMessage from "../components/ErrorMessage";
 import InsertShorty from "../components/InsertShorty";
 import ShortiesTable from "../components/ShortiesTable";
+import useBroadcastUpdate from "../hooks/useBroadcastUpdate";
 
 const Shorties = () => {
   const [shorties, setShorties] = useState<Shorty[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error>(null);
+  const broadcastedShorties = useBroadcastUpdate("/api/shorties");
 
   const refreshShorties = useCallback(async () => {
     try {
@@ -27,6 +29,13 @@ const Shorties = () => {
   useEffect(() => {
     refreshShorties();
   }, [refreshShorties]);
+
+  useEffect(() => {
+    if (!broadcastedShorties) {
+      return;
+    }
+    setShorties(broadcastedShorties);
+  }, [broadcastedShorties]);
 
   return (
     <>
